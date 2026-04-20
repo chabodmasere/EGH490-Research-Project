@@ -5,6 +5,9 @@ Supervised by Dr Jacob Coetzee
 
 ---
 
+<img width="500" height="500" alt="single_slot__1_-removebg-preview" src="https://github.com/user-attachments/assets/482427bc-6fa8-4fd8-ae4b-c923e3e94565" />
+
+
 ## Overview
 
 This repository contains the research, analysis, modelling, and documentation developed for **EGH490-2 Research Project 2**, completed in partial fulfilment of the requirements for the Bachelor of Engineering (Honours).
