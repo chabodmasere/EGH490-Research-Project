@@ -3,8 +3,6 @@
 Queensland University of Technology (QUT)  
 Supervised by Dr Jacob Coetzee  
 
----
-
 <img width="500" height="500" alt="single_slot__1_-removebg-preview" src="https://github.com/user-attachments/assets/482427bc-6fa8-4fd8-ae4b-c923e3e94565" />
 
 
