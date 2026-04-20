@@ -1,0 +1,172 @@
+{
+    "Optimizer": {
+        "Goals": null,
+        "Parameters": {
+            "Parameter List": [
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "17",
+                    "Max Value": "17.875",
+                    "Min Value": "14.625",
+                    "Parameter Name": "Lcav"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "15.9",
+                    "Max Value": "17.49",
+                    "Min Value": "14.31",
+                    "Parameter Name": "Lrad"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "5",
+                    "Max Value": "2.42",
+                    "Min Value": "1.98",
+                    "Parameter Name": "Xcav"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "0",
+                    "Max Value": "0.1",
+                    "Min Value": "-0.1",
+                    "Parameter Name": "Xrad"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "22.86",
+                    "Max Value": "25.146",
+                    "Min Value": "20.574",
+                    "Parameter Name": "a"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "12",
+                    "Max Value": "15.4",
+                    "Min Value": "12.6",
+                    "Parameter Name": "acavity"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "10.16",
+                    "Max Value": "11.176",
+                    "Min Value": "9.144",
+                    "Parameter Name": "b"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "5",
+                    "Max Value": "5.588",
+                    "Min Value": "4.572",
+                    "Parameter Name": "bcavity"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "18",
+                    "Max Value": "22",
+                    "Min Value": "18",
+                    "Parameter Name": "dcavity"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "0",
+                    "Max Value": "0.1",
+                    "Min Value": "-0.1",
+                    "Parameter Name": "delta"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "9.0",
+                    "Max Value": "9.9",
+                    "Min Value": "8.1",
+                    "Parameter Name": "f"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "1.27",
+                    "Max Value": "1.397",
+                    "Min Value": "1.143",
+                    "Parameter Name": "t"
+                },
+                {
+                    "Active": "False",
+                    "Anchors": "5",
+                    "Initial Value": "1.5875",
+                    "Max Value": "1.7463",
+                    "Min Value": "1.4287",
+                    "Parameter Name": "w"
+                }
+            ],
+            "Range Percentage": "10",
+            "Start From Current": "True"
+        },
+        "Settings": {
+            "CMAES Settings": {
+                "Maximal Iterations": 3000,
+                "Seed": 1,
+                "Sigma": "0.2",
+                "Use External Anchor": "True",
+                "Use Maximal Iterations": "True"
+            },
+            "Classic Powell Settings": {
+                "Accuracy": "0.01"
+            },
+            "General Settings": {
+                "Algorithm Type": "Trust Region Framework",
+                "Data Storage Type": "None",
+                "Goal Summary Type": "Sum of all goals",
+                "Move Mesh": "False",
+                "Start Active Solver": "True",
+                "Use Data Of Prev Calculations": "False"
+            },
+            "Genetic Algorithm Settings": {
+                "Generation Size": 32,
+                "Goal Function Level": "0.0",
+                "Initial Distribution": "Latin Hypercube Distribution",
+                "Interpolation": "No Interpolation",
+                "Maximal Iterations": 30,
+                "Mutation Rate": 60,
+                "Seed": 1
+            },
+            "Nelder Mead Simplex Settings": {
+                "Goal Function Level": "0.0",
+                "Initial Distribution": "Noisy Latin Hypercube Distribution",
+                "Maximal Iterations": 250,
+                "Min Simplex Size": "1e-6",
+                "Seed": 1,
+                "Use External Anchor": "True",
+                "Use Maximal Iterations": "False"
+            },
+            "Particle Swarm Settings": {
+                "Generation Size": 30,
+                "Goal Function Level": "0.0",
+                "Initial Distribution": "Latin Hypercube Distribution",
+                "Interpolation": "No Interpolation",
+                "Maximal Iterations": 15,
+                "Seed": 1
+            },
+            "Quasi Newton Settings": {
+                "Refinements": "1"
+            },
+            "Trust Region Settings": {
+                "Domain Accuracy": "0.01",
+                "Finite Differences Delta": "Automatic",
+                "Maximal Iterations": 500,
+                "Sigma": "0.2",
+                "Use Maximal Iterations": "False"
+            }
+        },
+        "Version": 1
+    }
+}

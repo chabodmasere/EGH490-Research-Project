@@ -1,0 +1,85 @@
+{
+   "execution": {
+      "classname": "SMAPowerByEmagHPCFrame",
+      "libname": "SMAPowerByEmagUI"
+   },
+   "inputVariables": [
+      {
+         "name": "a",
+         "type": "float",
+         "value": 22.86
+      },
+      {
+         "name": "t",
+         "type": "float",
+         "value": 1.27
+      },
+      {
+         "name": "b",
+         "type": "float",
+         "value": 10.16
+      },
+      {
+         "name": "w",
+         "type": "float",
+         "value": 1.5875
+      },
+      {
+         "name": "f",
+         "type": "float",
+         "value": 9.0
+      },
+      {
+         "name": "bcavity",
+         "type": "float",
+         "value": 5.0
+      },
+      {
+         "name": "acavity",
+         "type": "float",
+         "value": 12.0
+      },
+      {
+         "name": "dcavity",
+         "type": "float",
+         "value": 18.0
+      },
+      {
+         "name": "Lcav",
+         "type": "float",
+         "value": 17.0
+      },
+      {
+         "name": "Xcav",
+         "type": "float",
+         "value": 5.0
+      },
+      {
+         "name": "delta",
+         "type": "float",
+         "value": 0.0
+      }
+   ],
+   "outputVariables": [
+      {
+         "len": 1,
+         "name": "3D\\curve1_Int_e-field (f=9) (1)",
+         "type": "float"
+      },
+      {
+         "len": 1,
+         "name": "3D\\curve1_Int_e-field (f=9) (1)_1",
+         "type": "float"
+      },
+      {
+         "len": 1,
+         "name": "3D\\curve2_Int_e-field (f=9) (1)_1",
+         "type": "float"
+      },
+      {
+         "len": 1,
+         "name": "3D\\curve2_Int_e-field (f=9) (1)",
+         "type": "float"
+      }
+   ]
+}

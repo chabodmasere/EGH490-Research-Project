@@ -1,0 +1,90 @@
+{
+    "parameters": [
+        {
+            "expr": "22.86",
+            "name": "a",
+            "value": "22.86"
+        },
+        {
+            "expr": "1.27",
+            "name": "t",
+            "value": "1.27"
+        },
+        {
+            "expr": "1000/((f/0.299792458)^2-(500/a)^2)^(0.5)",
+            "name": "lam10",
+            "value": "48.6302566911488"
+        },
+        {
+            "expr": "10.16",
+            "name": "b",
+            "value": "10.16"
+        },
+        {
+            "expr": "1.5875",
+            "name": "w",
+            "value": "1.5875"
+        },
+        {
+            "expr": "1*a",
+            "name": "side",
+            "value": "22.86"
+        },
+        {
+            "expr": "lam10",
+            "name": "length",
+            "value": "48.6302566911488"
+        },
+        {
+            "expr": "9.0",
+            "name": "f",
+            "value": "9.0"
+        },
+        {
+            "expr": "f*1.256637*lam10",
+            "name": "Zwave",
+            "value": "549.995218898356"
+        },
+        {
+            "expr": "2*a",
+            "name": "width",
+            "value": "45.72"
+        },
+        {
+            "expr": "5",
+            "name": "bcavity",
+            "value": "5"
+        },
+        {
+            "expr": "12",
+            "name": "acavity",
+            "value": "12"
+        },
+        {
+            "expr": "18",
+            "name": "dcavity",
+            "value": "18"
+        },
+        {
+            "expr": "17",
+            "name": "Lcav",
+            "value": "17"
+        },
+        {
+            "expr": "5",
+            "name": "Xcav",
+            "value": "5"
+        },
+        {
+            "expr": "0",
+            "name": "delta",
+            "value": "0"
+        },
+        {
+            "expr": "length-delta",
+            "name": "length_delta",
+            "value": "48.6302566911488"
+        }
+    ],
+    "version": 1
+}
