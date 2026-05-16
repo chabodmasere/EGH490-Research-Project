@@ -9,7 +9,8 @@ Supervised by **Dr Jacob Coetzee**
 
 <br>
 
-<img src="https://github.com/user-attachments/assets/482427bc-6fa8-4fd8-ae4b-c923e3e94565" width="320"/>
+<img src="<img width="433" height="577" alt="IMG_8595-removebg-preview" src="https://github.com/user-attachments/assets/835052f2-9c43-4e76-9431-93565437a3cb" />
+
 
 <br><br>
 
