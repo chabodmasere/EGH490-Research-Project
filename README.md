@@ -10,6 +10,7 @@
 School of Electrical Engineering and Robotics
 
 **Student Engineer:** Chabod Masere
+
 **Supervisor:** Dr Jacob Coetzee
 
 <br>
