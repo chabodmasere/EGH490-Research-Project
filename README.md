@@ -10,7 +10,6 @@
 School of Electrical Engineering and Robotics
 
 **Student Engineer:** Chabod Masere
-
 **Supervisor:** Dr Jacob Coetzee
 
 <br>
@@ -161,8 +160,6 @@ EGH490-Research-Project/
 │
 └── Waveguide_Images/
     └── CST exports, waveguide model images, antenna geometry visuals, radiation patterns, and prototype-related imagery.
-```
-
 ```
 
 ## Key Engineering Questions
