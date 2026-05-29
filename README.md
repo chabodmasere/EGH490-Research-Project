@@ -15,7 +15,7 @@ School of Electrical Engineering and Robotics
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/139778b9-f9c7-4b9e-8c59-bf228c829492" width="560" alt="Waveguide slot array radiation pattern"/>
+  <img src="https://github.com/user-attachments/assets/f2285881-ba32-41f4-9f53-913a6bd0cb83" width="560" alt="Ordered second-order lobes radiation pattern"/>
 </p>
 
 <br><br>
