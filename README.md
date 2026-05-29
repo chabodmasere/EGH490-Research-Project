@@ -141,55 +141,28 @@ This repository includes work related to:
 EGH490-Research-Project/
 │
 ├── README.md
+├── TODO.md
+├── .gitignore
+├── desktop.ini
+├── Honours_Submission.pdf
 │
-├── reports/
-│   ├── proposal/
-│   ├── interim-report/
-│   ├── final-report/
-│   └── presentation/
+├── Compiled_Data/
+│   └── Processed and compiled simulation outputs, extracted datasets, and finalised numerical results.
 │
-├── cst-models/
-│   ├── single-slot/
-│   ├── cavity-backed-slot/
-│   ├── parametric-sweeps/
-│   └── array-models/
+├── Graphical_Images/
+│   └── General graphical assets used for README presentation, report figures, diagrams, and visual documentation.
 │
-├── matlab/
-│   ├── admittance-analysis/
-│   ├── radiation-patterns/
-│   ├── array-factor/
-│   └── post-processing/
+├── Multiarray_Extracts/
+│   └── Extracted data and results associated with multi-slot and array-level waveguide configurations.
 │
-├── cad/
-│   ├── waveguide-prototypes/
-│   ├── cavity-layers/
-│   ├── slot-array-layers/
-│   └── fabrication-exports/
+├── Relevant_Research_Papers/
+│   └── Literature, supporting academic papers, and reference material used throughout the research project.
 │
-├── prototyping/
-│   ├── bambu-x1c-carbon/
-│   ├── pla-prototypes/
-│   ├── print-settings/
-│   └── prototype-iterations/
-│
-├── data/
-│   ├── s-parameters/
-│   ├── admittance-results/
-│   ├── field-distributions/
-│   └── radiation-patterns/
-│
-├── figures/
-│   ├── cst-results/
-│   ├── cad-renders/
-│   ├── prototype-images/
-│   ├── plots/
-│   └── report-figures/
-│
-└── references/
-    └── literature-review/
+└── Waveguide_Images/
+    └── CST exports, waveguide model images, antenna geometry visuals, radiation patterns, and prototype-related imagery.
 ```
 
----
+```
 
 ## Key Engineering Questions
 
