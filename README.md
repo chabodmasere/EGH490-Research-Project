@@ -1,7 +1,7 @@
 
 <div align="center">
 
-# EGH490 — Research Project 2  
+# EGH490 — Research Project  
 ### Honours Research Project  
 
 **Queensland University of Technology (QUT)**  
@@ -9,7 +9,9 @@ Supervised by **Dr Jacob Coetzee**
 
 <br>
 
-<img src="https://github.com/user-attachments/assets/482427bc-6fa8-4fd8-ae4b-c923e3e94565" width="320"/>
+<img width="433" height="577" alt="IMG_8595-removebg-preview (1)" src="https://github.com/user-attachments/assets/b2a7369e-0583-4561-9960-919d910239b0" />
+
+
 
 <br><br>
 
@@ -83,7 +85,7 @@ The project follows a structured engineering workflow:
 
 ## Academic Context
 
-- **Unit:** EGH490-2 Research Project 2  
+- **Unit:** EGH490 Research Project   
 - **Institution:** Queensland University of Technology  
 - **Supervisor:** Dr Jacob Coetzee  
 
