@@ -1,6 +1,6 @@
 <div align="center">
 
-# EGH490 Research Project (HIGH DISTINCTION)
+# EGH490 Research Project (High Distinction)
 
 ## Investigation into Slot Arrays Radiating Through Truncated Waveguides
 
