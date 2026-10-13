@@ -1,269 +1,138 @@
-<div align="center">
-
 # EGH490 Research Project (High Distinction)
 
-## Investigation into Slot Arrays Radiating Through Truncated Waveguides
+**Slot arrays radiating through truncated waveguides, to combat the formation of second-order lobes.**
 
-### Suppression of Second-Order Lobes in Waveguide Antenna Systems
+Honours research project at the Queensland University of Technology (QUT), School of Electrical
+Engineering and Robotics, Semester 1 2026.
 
-**Queensland University of Technology (QUT)**
-School of Electrical Engineering and Robotics
-
-**Student Engineer:** Chabod Masere
-**Supervisor:** Dr Jacob Coetzee
-
-<br>
+**Student:** Chabod Masere &nbsp;·&nbsp; **Supervisor:** Dr Jacob Coetzee &nbsp;·&nbsp; **Report:** [Honours_Submission.pdf](Honours_Submission.pdf)
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/f2285881-ba32-41f4-9f53-913a6bd0cb83" width="560" alt="Ordered second-order lobes radiation pattern"/>
+  <img src="Graphical_Images/second_order_lobes_ordered.png" width="640" alt="Illustrative radiation pattern with regular second-order lobes around the main beam">
 </p>
 
-<br><br>
+## The problem
 
-**Project Status:** Completed
-**Research Focus:** Electromagnetic Field Theory · CST Simulation · Slot-Admittance Modelling · Array Synthesis · Prototype Validation
+A slotted waveguide array radiates a main beam, but the regular slot layout also sends power
+into unwanted second-order lobes off to the sides. Those lobes waste power and reduce how well
+the antenna can discriminate between directions. This project tests whether letting each slot
+radiate through a short truncated waveguide, with the slot geometry varied across the array,
+can suppress them.
 
-</div>
+The design target was a sidelobe level of **−25 dB** at **9 GHz**.
 
----
+## Result
 
-## Overview
+A truncated 6 × 6 array with non-uniform slot geometry, simulated in CST:
 
-This repository documents the research, modelling, simulation, design, prototyping, and validation work completed for the **EGH490 Research Project** at the **Queensland University of Technology (QUT)**.
+| Metric | Result |
+| --- | --- |
+| Sidelobe level, constant-θ cut | −23.2 dB (1.8 dB short of the −25 dB target) |
+| Sidelobe level, constant-φ cut | −21.8 dB |
+| 3 dB beamwidth | 14.2° and 13.7° in the two cuts |
+| Main beam direction | Broadside (φ = 90°) |
+| Reflection coefficient S11 | About −10.5 dB near 9 GHz |
 
-The project investigated the effectiveness of **arrays of slots radiating through truncated waveguides** as a method for suppressing unwanted **second-order lobes** in antenna radiation patterns. These lobes arise when the aperture field distribution departs from the ideal excitation profile, causing power to radiate into unintended directions and reducing beam purity, gain efficiency, and angular discrimination.
+<p align="center">
+  <img src="Graphical_Images/23.2dB.png" width="48%" alt="Far-field directivity, constant-theta cut">
+  <img src="Graphical_Images/21.8dB.png" width="48%" alt="Far-field directivity, constant-phi cut">
+</p>
 
-The completed work represents a full engineering research workflow, progressing from single-slot electromagnetic behaviour to array-level synthesis, CAD development, physical prototyping, and validation-oriented analysis.
+The target was not met, but both cuts clear −20 dB, which supports the approach as a first-pass
+optimisation method. The result is from simulation only: the printed prototype checks the
+geometry, and measured validation needs a metal build (see [Prototype](#prototype)).
 
----
+## Method
 
-## Research Aim
+### 1. Single-slot sweep
 
-The central aim of this project was to determine whether controlled slot placement and cavity-backed/truncated waveguide geometry could reduce second-order lobe formation while maintaining acceptable impedance matching and radiation performance.
+A single cavity-backed slot in a WR-90 waveguide section (22.86 mm × 10.16 mm) was swept in CST over
+cavity-slot offset (0.6 mm to 5.0 mm, 23 values) and cavity-slot length (15.0 mm to 17.0 mm, 21 values), giving
+**483 simulation cases**. The S-parameters of each case were converted to the slot's normalised
+self-admittance, `Gself` and `Bself`.
 
-The project focused on:
+<p align="center">
+  <img src="Waveguide_Images/singleslot_chassis.png" width="34%" alt="Single-slot CST model">
+  <img src="Compiled_Data/simulation_2 (Accepted)/charts/3.0mm.png" width="56%" alt="Self-admittance against cavity-slot length at 3 mm offset">
+</p>
 
-* Understanding slot excitation in rectangular waveguides
-* Modelling the relationship between slot offset, resonance, and self-admittance
-* Investigating cavity-backed slot behaviour
-* Evaluating aperture field uniformity in amplitude and phase
-* Suppressing second-order lobes in the far-field radiation pattern
-* Translating simulated geometry into manufacturable prototypes
-* Validating analytical and simulated predictions through structured design iteration
+For each offset, the resonant length is where the susceptance `Bself` crosses zero, and the
+conductance there sets how strongly that slot radiates.
 
----
+### 2. Array synthesis
 
-## Technical Background
+The sweep acts as a lookup table. [`spline.m`](Multiarray_Extracts/spline.m) fits splines through
+the resonant points, sets a tapered target conductance for each of the 36 slots (strongest in the
+centre, weakest at the edges), and solves for the offset and length each slot needs. The offsets
+alternate sign along each row.
 
-Waveguide slot arrays are widely used in radar, aerospace, satellite communication, and high-frequency antenna systems due to their high efficiency, mechanical robustness, and ability to generate controlled radiation patterns.
+### 3. Full-array simulation
 
-However, truncated waveguide structures and non-ideal aperture distributions can produce unwanted radiation peaks. These second-order lobes may arise due to:
+The 36 slot geometries were built into a layered CST model: base plate, coupling slots,
+cavity layer and radiating slot layer.
 
-* Abrupt aperture truncation
-* Non-uniform slot excitation
-* Phase error across the slot array
-* Mutual coupling between neighbouring slots
-* Higher-order field behaviour inside the waveguide or cavity
-* Poorly controlled slot spacing, offset, or geometry
+<p align="center">
+  <img src="Waveguide_Images/multiarray_chassis.png" width="44%" alt="CST model of the 6 by 6 array">
+  <img src="Waveguide_Images/efield_bottom_view_1.png" width="40%" alt="Electric field across the array">
+</p>
 
-This project investigated these effects using a combined analytical, numerical, and prototype-driven workflow.
+[`vapp_analysis.cpp`](Multiarray_Extracts/vapp_analysis.cpp) takes the complex applied voltage at
+each of the 36 slots and reports magnitude, phase, normalised magnitude and phase deviation, to
+check that the aperture is tapered and in phase as intended.
 
----
+<p align="center">
+  <img src="Graphical_Images/s11_frequency_sweep.png" width="56%" alt="S11 against frequency, 8.9 to 9.1 GHz">
+</p>
 
-## Methodology
+## Prototype
 
-The research followed a structured engineering process:
+A PLA prototype was 3D printed on a Bambu Lab X1C to verify the layered geometry, slot definition
+and assembly fit. PLA is not conductive, so it cannot be used for electromagnetic testing.
 
-### 1. Literature Review
+<p align="center">
+  <img src="Waveguide_Images/pla_prototype_view_1.png" width="44%" alt="3D-printed PLA prototype">
+  <img src="Waveguide_Images/array_prototype_steel.png" width="34%" alt="Exploded view of the proposed metallic prototype">
+</p>
 
-Review of waveguide slot arrays, cavity-backed slots, truncated apertures, sidelobe suppression, and array synthesis methods.
+**Future work:** fabricate a conductive prototype (for example stainless steel), measure S11 with a
+vector network analyser, and measure the far-field pattern to compare against the CST results.
 
-### 2. Single-Slot Modelling
-
-Development of single-slot CST models to study resonance, self-admittance, slot offset, slot length, and coupling behaviour.
-
-### 3. Parametric Sweeps
-
-Systematic variation of slot and cavity parameters, including offset, length, width, cavity size, and truncation geometry.
-
-### 4. Admittance Extraction
-
-Extraction and comparison of conductance and susceptance behaviour to identify resonant slot configurations.
-
-### 5. Aperture Field Analysis
-
-Investigation of electric field magnitude and phase distribution across the slot and cavity aperture.
-
-### 6. Array Synthesis
-
-Extension from single-slot behaviour to multi-slot array behaviour using excitation control and array-factor principles.
-
-### 7. Radiation Pattern Evaluation
-
-Assessment of gain, directivity, sidelobe levels, and second-order lobe suppression.
-
-### 8. CAD Development and Prototype Fabrication
-
-Translation of simulated waveguide and slot-array geometries into manufacturable CAD models. Prototype components were developed for additive manufacturing using a **Bambu Lab X1C Carbon 3D printer**, enabling rapid iteration of waveguide bodies, cavity layers, and slot-array structures.
-
-### 9. Validation and Verification
-
-Comparison of simulation results with measurement-oriented expectations, including S-parameter behaviour, impedance characteristics, aperture-field behaviour, and radiation pattern performance.
-
----
-
-## Technical Scope
-
-This repository includes work related to:
-
-* Rectangular waveguide theory
-* TE-mode field behaviour
-* Slot excitation mechanisms
-* Slot self-admittance
-* Equivalent circuit modelling
-* Series impedance and shunt admittance representations
-* Slot offset and resonance behaviour
-* Cavity-backed slot analysis
-* Mutual coupling considerations
-* Array-factor modelling
-* Far-field radiation pattern analysis
-* CST Microwave Studio simulation
-* MATLAB post-processing
-* Fusion 360 CAD development
-* Bambu Lab X1C Carbon additive manufacturing
-* Prototype preparation for experimental validation
-
----
-
-## Repository Structure
+## Repository layout
 
 ```text
-EGH490-Research-Project/
-│
-├── README.md
-├── TODO.md
-├── .gitignore
-├── desktop.ini
-├── Honours_Submission.pdf
-│
-├── Compiled_Data/
-│   └── Processed and compiled simulation outputs, extracted datasets, and finalised numerical results.
-│
-├── Graphical_Images/
-│   └── General graphical assets used for README presentation, report figures, diagrams, and visual documentation.
-│
-├── Multiarray_Extracts/
-│   └── Extracted data and results associated with multi-slot and array-level waveguide configurations.
-│
-├── Relevant_Research_Papers/
-│   └── Literature, supporting academic papers, and reference material used throughout the research project.
-│
-└── Waveguide_Images/
-    └── CST exports, waveguide model images, antenna geometry visuals, radiation patterns, and prototype-related imagery.
+Honours_Submission.pdf        final report (65 pages, including data appendices)
+Compiled_Data/
+├── simulation_2 (Accepted)/  the 23 × 21 sweep used for the design: raw CST exports and one chart per offset
+├── simulation_3/             a finer 33-offset sweep, with its workbook
+└── simulation_4/             a further sweep, with its workbook
+Multiarray_Extracts/          6 × 6 array work: spline synthesis, applied-voltage analysis, CST field exports
+Graphical_Images/             far-field patterns, S11, Smith charts, equivalent circuits
+Waveguide_Images/             CST model views, layer drawings, field plots, prototype photos
+Relevant_Research_Papers/     four reference papers
+TODO.md                       the working checklist used to plan the project
 ```
 
-## Key Engineering Questions
+In each `single_slot_data/` folder, `s11.txt` and `s21.txt` are the S-parameters per run, and the
+`curve*real.txt` and `curve*imag.txt` files are the real and imaginary parts of the electric field
+`Ex` along the two reference curves (slot side and cavity side) at 9 GHz.
 
-This project was structured around several core engineering questions:
+`spline.m` reads `OPEN_SLOT_CAVITY (SIM2).xlsm`, which is not in the repository, so it will not run
+as checked in. The script is also listed in the report appendix.
 
-* How does slot offset affect resonant conductance and susceptance?
-* How does a cavity-backed configuration modify the active slot admittance?
-* Can cavity geometry improve aperture field uniformity?
-* How much phase variation across the aperture is acceptable before radiation performance degrades?
-* What geometric parameters most strongly influence second-order lobe formation?
-* Can a truncated waveguide slot array achieve meaningful lobe suppression while remaining manufacturable?
-* How effectively can additive manufacturing support early-stage waveguide antenna prototyping?
-* How closely can CST simulation predictions be aligned with analytical expectations and physical prototype behaviour?
+## Tools
 
----
+| Tool | Used for |
+| --- | --- |
+| CST Studio Suite | Full-wave simulation and parametric sweeps |
+| MATLAB | Spline interpolation and array synthesis |
+| C++ | Applied-voltage magnitude and phase analysis |
+| Excel | Admittance extraction and sweep records |
+| Fusion 360, Bambu Lab X1C | CAD and the PLA prototype |
 
-## Simulation, Design, and Fabrication Tools
+## Author
 
-The project used a combination of electromagnetic simulation, numerical analysis, CAD modelling, and additive manufacturing tools:
+**Chabod Masere**
 
-| Tool                     | Purpose                                                                                |
-| ------------------------ | -------------------------------------------------------------------------------------- |
-| CST Microwave Studio     | Full-wave electromagnetic simulation and parametric sweeps                             |
-| MATLAB                   | Data analysis, radiation pattern plotting, array-factor modelling, and post-processing |
-| Fusion 360               | CAD modelling and prototype preparation                                                |
-| Bambu Lab X1C Carbon     | Additive manufacturing of prototype waveguide and slot-array components                |
-| GitHub                   | Version control, research documentation, and artefact management                       |
-| VNA Testing              | S-parameter measurement and impedance validation                                       |
-| Anechoic Chamber Testing | Radiation pattern validation and lobe-level characterisation                           |
-
----
-
-## Prototype Development
-
-A major component of this completed research was the transition from simulated electromagnetic models to physical prototype geometries.
-
-The prototype workflow involved:
-
-* Exporting waveguide and slot-layer geometries from CAD
-* Preparing print-ready files for additive manufacturing
-* Fabricating early-stage prototypes using the **Bambu Lab X1C Carbon**
-* Assessing physical geometry, tolerances, slot definition, and assembly fit
-* Using printed prototypes to support design iteration before final metallic fabrication
-
-The use of additive manufacturing enabled rapid evaluation of complex truncated waveguide geometries before committing to more expensive metallic manufacturing processes.
-
----
-
-## Expected Performance Criteria
-
-The project used the following performance indicators to assess design quality:
-
-* Reduction of second-order lobes relative to the main beam
-* Target suppression near or below **−20 dB** where achievable
-* Acceptable impedance matching at the feed point
-* Stable resonant behaviour across selected slot configurations
-* Controlled aperture amplitude and phase distribution
-* Manufacturable waveguide and slot-layer geometry
-* Prototype geometry suitable for fabrication and experimental testing
-* Agreement between analytical trends and CST simulation outputs
-
----
-
-## Research Contributions
-
-This repository contributes a structured workflow for analysing and designing truncated waveguide slot arrays. The main contributions include:
-
-* A single-slot simulation database for offset and geometry sensitivity
-* Comparative admittance analysis of conventional and cavity-backed slot models
-* Investigation of aperture field uniformity as a design metric
-* Transition from single-slot behaviour to array-level synthesis
-* CAD-ready waveguide and slot-layer concepts for prototyping
-* Additively manufactured prototype iterations using the Bambu Lab X1C Carbon
-* Documentation of a completed honours-level antenna engineering research process
-
----
-
-## Academic Context
-
-| Item             | Description                                      |
-| ---------------- | ------------------------------------------------ |
-| Unit             | EGH490 Research Project                          |
-| Institution      | Queensland University of Technology              |
-| School           | Electrical Engineering and Robotics              |
-| Research Area    | Antennas, waveguides, electromagnetic simulation |
-| Supervisor       | Dr Jacob Coetzee                                 |
-| Student Engineer | Chabod Masere                                    |
-| Project Status   | Completed                                        |
-
----
-
-## Status
-
-**Project completed.**
-
-This repository serves as a technical archive of the completed project’s engineering development, including theoretical modelling, CST simulations, MATLAB analysis, CAD development, prototype fabrication, and final documentation.
-
-The work reflects the progression from electromagnetic field theory to simulated design, physical prototyping, and validation-oriented antenna engineering.
-
----
-
-<div align="center">
-
-## Field Theory → Simulation → Slot Admittance → CAD Prototyping → Array Synthesis → Validation
-
-</div>
+🎓 Master of Robotics and Artificial Intelligence
+<br>
+🎓 Bachelor of Engineering, Electrical & Aerospace
