@@ -78,7 +78,12 @@ cavity layer and radiating slot layer.
 
 [`vapp_analysis.cpp`](Multiarray_Extracts/vapp_analysis.cpp) takes the complex applied voltage at
 each of the 36 slots and reports magnitude, phase, normalised magnitude and phase deviation, to
-check that the aperture is tapered and in phase as intended.
+check that the aperture is tapered and in phase as intended. Build and run it with:
+
+```bash
+g++ -O2 -std=c++17 vapp_analysis.cpp -o vapp_analysis
+./vapp_analysis
+```
 
 <p align="center">
   <img src="Graphical_Images/s11_frequency_sweep.png" width="56%" alt="S11 against frequency, 8.9 to 9.1 GHz">
@@ -108,8 +113,6 @@ Compiled_Data/
 Multiarray_Extracts/          6 × 6 array work: spline synthesis, applied-voltage analysis, CST field exports
 Graphical_Images/             far-field patterns, S11, Smith charts, equivalent circuits
 Waveguide_Images/             CST model views, layer drawings, field plots, prototype photos
-Relevant_Research_Papers/     four reference papers
-TODO.md                       the working checklist used to plan the project
 ```
 
 In each `single_slot_data/` folder, `s11.txt` and `s21.txt` are the S-parameters per run, and the
@@ -118,6 +121,15 @@ In each `single_slot_data/` folder, `s11.txt` and `s21.txt` are the S-parameters
 
 `spline.m` reads `OPEN_SLOT_CAVITY (SIM2).xlsm`, which is not in the repository, so it will not run
 as checked in. The script is also listed in the report appendix.
+
+## Key references
+
+- J. C. Coetzee, "Cavity-backed waveguide slot array for elimination of second-order lobes," manuscript for *IEEE Transactions on Antennas and Propagation*, 2025.
+- G. A. Casula, G. Mazzarella, G. Montisci and G. Muntoni, "A review on improved design techniques for high performance planar waveguide slot arrays," *Electronics*.
+- M. Khazai and M. Khalaj-Amirhosseini, "To reduce side lobe level of slotted array antennas using nonuniform waveguides," *International Journal of RF and Microwave Computer-Aided Engineering*, 2015.
+- M. Boyarsky, M. F. Imani and D. R. Smith, "Grating lobe suppression in metasurface antenna arrays with a waveguide feed layer," arXiv:1905.09846, 2019.
+
+The full bibliography is in the report.
 
 ## Tools
 
